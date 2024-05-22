@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sky-eye-user-service
+  namespace: sky-eye-dev-env
+  labels:
+    app: sky-eye-user-service-app
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: sky-eye-user-service-app
+  template:
+    metadata:
+      labels:
+        app: sky-eye-user-service-app
+    spec:
+      containers:
+      - name: sky-eye-userservice
+        image: 213937518703.dkr.ecr.eu-central-1.amazonaws.com/sky-eye-ecr-repository:sky-eye-userservice-no-cache-1
+        ports:
+        - name: http
+          containerPort: 8081
+        imagePullPolicy: IfNotPresent
+        env:
+        - name: SPRING_DATASOURCE_URL
+          value: jdbc:postgresql://sky-eye-db-instance.czu4c2o62jk0.eu-central-1.rds.amazonaws.com:5432/sky_eye_db
+        - name: SPRING_DATASOURCE_USERNAME
+          value: admin_user
+        - name: SPRING_DATASOURCE_PASSWORD
+          value: 4dsqFWwEVTog

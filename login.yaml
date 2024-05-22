@@ -1,0 +1,3 @@
+aws ecr get-login-password --region eu-central-1| docker login --username AWS --password-stdin 213937518703.dkr.ecr.eu-central-1.amazonaws.com/sky-eye-ecr-repository
+
+aws eks update-kubeconfig --region eu-central-1 --name SkyEyeEksCluster
